@@ -73,9 +73,6 @@ function updateDisplay(verse) {
     verse = verse.replace(" ", "");
 verse = verse.toLowerCase();
 let url = verse + '.txt';
-console.log(url);
-}
-let url = 'verse1.txt';
 fetch(url).then(function(response) {
   response.text().then(function(text) {
     poemDisplay.textContent = text;
@@ -83,6 +80,10 @@ fetch(url).then(function(response) {
     console.log('123');
   });
 });
+  
+}
+
+
 
 updateDisplay('Verse 1');
 verseChoose.value = 'Verse 1';
