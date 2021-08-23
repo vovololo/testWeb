@@ -1,0 +1,258 @@
+/* @media (min-width: 430px){ */
+    *{
+        box-sizing: border-box;
+    }
+    body{
+        background-color:beige ;
+        margin: 0;
+        font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
+    }
+
+    .btnOrder{
+        position: absolute;
+        top: -50px;
+    }
+
+    .wrapper{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .order{
+        width: 23%; 
+        /* border-right: 2px solid black;
+        border-radius: 2px; */
+        background-color: aquamarine;
+        padding: 5px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        transition: 1s;
+    }
+
+    .item{
+        font-size: 25px;
+        display: inline-block;
+        max-width: 40%;
+        margin-top: 10px;
+        margin-right: 30px;
+        border-bottom: 2px solid black;
+    }
+
+    .option{
+        max-width: fit-content;
+        width: inherit;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .btnOption{
+        width: 50%;
+        height: 40px;
+        margin: 0 auto;
+        text-align: center;
+        
+    }
+
+    .btnOption.selected{
+        background-color: rgba(197, 209, 209,0.3);
+    }
+
+    .menu{
+        margin-left: 23%;
+        padding-left: 40px;
+        padding-bottom: 20px;
+        background-color: rgb(197, 209, 209);
+        /* flex: 1; */
+        overflow: auto;
+        /* border-left: 2px solid black; */
+        border-radius: 2px;
+    }
+    
+    .submitted .box{
+        border-radius: 50%;
+        text-align: center;
+        width: 100px;
+        height: 100px;
+        background-color: rgb(118, 223, 174);
+        border: none;
+    }
+
+    .submitted{
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+    }
+
+    .success{
+        font-family: helvetica;
+        font-size: 18;
+        color: #333;
+        opacity: 0;
+        opacity: 0;
+        animation: title .6s ease-in-out;
+        animation-delay: .5s;
+        animation-fill-mode: forwards;
+    }
+
+    .circle{
+        stroke-dasharray: 565;
+        stroke-dashoffset: 565;
+        animation: circle 1s ease-in-out;
+        animation-fill-mode: forwards;
+    }
+
+    .tick{
+        stroke-dasharray: 154;
+        stroke-dashoffset: 154;
+        animation: tick .8s ease-out;
+        animation-delay: .65s;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes circle{
+        from{
+            stroke-dashoffset: 565;
+        }
+        to{
+            stroke-dashoffset: 1130;
+        }
+    }
+
+    @keyframes tick{
+        from{
+            stroke-dashoffset: 154;
+        }
+        to{
+            stroke-dashoffset: 0;
+        }
+    }
+
+    @keyframes title{
+        from{
+            opacity: 0;
+        }
+        to{
+            opacity: 1;
+        }
+    }
+    
+/* } */
+@media (max-width:890px){
+    .order{
+        left: -300px;
+    }
+
+    .menu{
+        margin-left: unset;
+        padding-left: 20px;
+    }
+
+    .item{
+        font-size: 40px;
+        min-width: 200px;
+        width: 25%;
+    }
+    
+    
+}
+
+@media (max-width:735px){
+    .item{
+        width: 100%;
+    }
+}
+
+@media (max-width:429px){
+    .order{
+        left: -300px;
+    }
+
+    .order.show{
+        left: 0;
+        margin-top: 40px;
+        width: 100%;
+        
+    }
+
+    .menu{
+        margin-left: unset;
+    }
+
+    .item{
+        font-size: 40px;
+        max-width: 93%;
+    }
+
+    .btnOption{
+        font-size: 20px;
+    }
+
+    .btnOrder{
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 40px;
+        height: 40px;
+        border: none;
+        border-radius: 30%;
+        transition: .5s;
+    }
+
+    .btnOrder.clicked{
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .btnOrder:hover{
+        background: rgb(185, 185, 180) ;
+    }
+}
+
+/* @media (max-width: 429px){
+    body{
+        background-color:rgb(153, 153, 140) ;
+        margin: 0;
+    }
+
+    .order{
+        display: none;
+        margin: 0;
+        height: 100vh;
+        background-color: azure;
+        padding:  10px;
+    }
+
+
+    .menu div{
+        margin: 10px 5px 0 5px;
+        padding: 5px;
+        border: 2px solid black;
+        display: grid;
+        grid-template-columns: 1fr 30%;
+    }
+
+    img{
+        width: 100%;
+    }
+
+    .btnOrder{
+        background: none;
+        border: none;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+} */
+
