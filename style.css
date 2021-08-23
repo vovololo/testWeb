@@ -188,6 +188,7 @@
 
     .menu{
         margin-left: unset;
+       overflow-x: hidden;
     }
 
     .item{
