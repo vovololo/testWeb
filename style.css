@@ -55,8 +55,11 @@
         width: 50%;
         height: 40px;
         margin: 0 auto;
-        text-align: center;
-        
+        text-align: center;   
+    }
+
+    .btnOption:active{
+        background-color: rgb(151, 151, 143);
     }
 
     .btnOption.selected{
