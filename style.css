@@ -98,7 +98,7 @@
     .success{
         font-family: helvetica;
         font-size: 18;
-        color: #333;
+        color: rgb(0,0,0);
         opacity: 0;
         opacity: 0;
         animation: title .6s ease-in-out;
