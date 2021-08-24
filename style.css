@@ -123,6 +123,13 @@
         animation-fill-mode: forwards;
     }
 
+    .cross{
+        opacity: 0;
+        animation: cross .1s ease-out;
+        animation-fill-mode: forwards;
+        animation-delay: .95s;
+    }
+
     @keyframes circle{
         from{
             stroke-dashoffset: 565;
@@ -142,6 +149,15 @@
     }
 
     @keyframes title{
+        from{
+            opacity: 0;
+        }
+        to{
+            opacity: 1;
+        }
+    }
+
+    @keyframes cross{
         from{
             opacity: 0;
         }

@@ -7,6 +7,7 @@ for(let i = 0;i<item.length;i++){
         <button class="btnOption btnIce">Ice:Full</button>
         <button class="btnOption btnSizeL">size:Large</button>
         <button class="btnOption btnSizeM">size:Medium</button>
+        <button class="btnOption btnPrice">price:</button>
         <button class="btnOption btnSubmit">Submit</button>
     </div>
     `
@@ -33,60 +34,96 @@ for(let i = 0;i<ip.length;i++){
     });
     let submit = document.querySelectorAll(".btnSubmit");
     $(submit[i]).click(function(){
-            let submitted = document.createElement('div');
-            let temp = `
-            <svg width="200" height="200">
-                <circle fill="none" stroke="#68E534" stroke-width="10" cx="100" cy="100" r="90" 
-                class="circle" transform="rotate(-90 100 100)" stroke-linecap="round"></circle>
-                <polyline fill="none" stroke="#68E534" stroke-width="12" points="44,107 86,142 152,69"
-                stroke-linecap="round" stroke-linejoin="round" class="tick" />
-            </svg>
-            <h2 class="success" >Submitted</h2>
-            `;
-            submitted.innerHTML = temp;
-            submitted.setAttribute("class", "submitted");
-            document.body.appendChild(submitted);
-            setTimeout(function(){
-                document.body.removeChild(submitted);
-            }, 2000);
+            let name = ip[i].querySelector('p').textContent;
+            let detail = item[i].querySelectorAll(".btnOption");
+            let optionDetail = '';
+            let sizeSelected = 0;
+            for(let i = 0; i<detail.length-1;i++){
+                if(detail[i].textContent == "size:Large" || detail[i].textContent == "size:Medium"){
+                    let sizeClass = detail[i].getAttribute('class');
+                    if(sizeClass === 'btnOption btnSizeL'){
+                        continue;
+                    }
+                    else if(sizeClass === 'btnOption btnSizeM'){
+                        continue;
+                    }
+                    else{
+                        sizeSelected++;
+                    }
+                }
+                optionDetail += detail[i].textContent;
+                optionDetail +=" ";
+            }
+            if(sizeSelected >= 1){
+                showOrderInfo(name,optionDetail);
+                successAnimation();    
+            }
+            else{
+                failAnimation();
+            }
+            
         });
 };
-
-// for(let i = 0;i<ip.length;i++){
-//     ip[i].addEventListener('click', function(){
-//         let submit = document.querySelectorAll(".btnSubmit");
-//         let temp = option[i].getAttribute("class");
-
-//         if(temp==='option'){
-//             option[i].setAttribute("class", "option x");
-//             $(option[i]).slideToggle();
-//         }else{
-//             option[i].removeAttribute("class");
-//             option[i].setAttribute("class", "option");
-//             $(option[i]).slideToggle();
-//         }
-
-//         $(submit[i]).click(function(){
-//             let submitted = document.createElement('div');
-//             let temp = `
-//                     <button class="box">submitted</button>
-//             `;
-//             submitted.innerHTML = temp;
-//             submitted.setAttribute("class", "submitted");
-//             document.body.appendChild(submitted);
-//             setTimeout(function(){
-//                 document.body.removeChild(submitted);
-//             }, 1000);
-//         });
-//     });
-// };
-
 $(".option").hide();
+
+function showOrderInfo(name, optionDetail){
+        let order = document.querySelector('.order');
+        let tempDiv = document.createElement('div');
+        let tempOrder = `
+        <p>${name}</p>
+        <p>${optionDetail}</p>
+        `;
+        tempDiv.innerHTML = tempOrder;
+        tempDiv.setAttribute('class', 'orderInfo')
+        let tempHr = document.createElement('hr');
+        order.appendChild(tempDiv);
+        order.appendChild(tempHr);
+}
+
+function successAnimation(){
+        let submitted = document.createElement('div');
+        let temp = `
+        <svg width="200" height="200">
+            <circle fill="none" stroke="#68E534" stroke-width="10" cx="100" cy="100" r="90" 
+            class="circle" transform="rotate(-90 100 100)" stroke-linecap="round"></circle>
+            <polyline fill="none" stroke="#68E534" stroke-width="12" points="44,107 86,142 152,69"
+            stroke-linecap="round" stroke-linejoin="round" class="tick" />
+        </svg>
+        <h2 class="success" >Submitted</h2>
+        `;
+        submitted.innerHTML = temp;
+        submitted.setAttribute("class", "submitted");
+        document.body.appendChild(submitted);
+        setTimeout(function(){
+            document.body.removeChild(submitted);
+        }, 2000);
+}
+
+function failAnimation(){
+    let submitted = document.createElement('div');
+    let temp = `
+    <svg width="200" height="200">
+            <circle fill="none" stroke="#EE0000" stroke-width="10" cx="100" cy="100" r="90" 
+            class="circle" transform="rotate(-90 100 100)" stroke-linecap="round"></circle>
+            <polyline fill="none" stroke="#EE0000" stroke-width="12" points="60,60 100,100 140,60 100,100 140,140 100,100 ,60,140"
+            stroke-linecap="round" stroke-linejoin="round" class="cross" />
+        </svg>
+        <h2 class="success">Fail Submit</h2>
+        <h2 class="success">(NEED TO SELECT SIZE)</h2>
+    `;
+    submitted.innerHTML = temp;
+    submitted.setAttribute("class", "submitted");
+    document.body.appendChild(submitted);
+    setTimeout(function(){
+        document.body.removeChild(submitted);
+    }, 3000);
+}
 
 let sugar = document.querySelectorAll(".btnSugar");
 let ice = document.querySelectorAll(".btnIce");
 let btnL = document.querySelectorAll(".btnSizeL");
 let btnM = document.querySelectorAll(".btnSizeM");
+let btnP = document.querySelectorAll(".btnPrice");
 
 for(let i=0;i<option.length;i++){
     sugar[i].addEventListener('click', function(){
@@ -119,13 +156,26 @@ for(let i=0;i<option.length;i++){
         let temp = btnM[i].getAttribute("class");
         if(temp !== "btnOption btnSizeM selected"){
             $(btnL[i]).toggleClass("selected");
-        };
+        }
+        else if(temp == "btnOption btnSizeM selected"){
+            $(btnM[i]).toggleClass("selected");
+            $(btnL[i]).toggleClass("selected");
+        }
+            let price = item[i].getAttribute("id").replace(/[^0-9]/g, '');
+            price = Number(price)+10;
+            $(btnP[i]).html("price:"+price);
     });
     $(btnM[i]).click(function(){
         let temp = btnL[i].getAttribute("class");
         if(temp !== "btnOption btnSizeL selected"){
             $(btnM[i]).toggleClass("selected");
-        };
+        }
+        else if(temp == "btnOption btnSizeL selected"){
+            $(btnM[i]).toggleClass("selected");
+            $(btnL[i]).toggleClass("selected");
+        }
+            let price = item[i].getAttribute("id").replace(/[^0-9]/g, '');
+            $(btnP[i]).html("price:"+price);
     });
 };
 
