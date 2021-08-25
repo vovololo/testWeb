@@ -1,4 +1,17 @@
 const item = document.querySelectorAll(".item");
+var fastOrder = false;
+
+$(".btnFast").click(function(){
+    $(".btnFast").toggleClass("switch");
+    if(fastOrder == true){
+        fastOrder = false;
+    }
+    else{
+        fastOrder = true;
+    }
+});
+
+
 
 for(let i = 0;i<item.length;i++){
     let temp = `
@@ -36,9 +49,11 @@ for(let i = 0;i<ip.length;i++){
     $(submit[i]).click(function(){
             let name = ip[i].querySelector('p').textContent;
             let detail = item[i].querySelectorAll(".btnOption");
+            let orderPrice = 0;
             let optionDetail = '';
             let sizeSelected = 0;
-            for(let i = 0; i<detail.length-1;i++){
+            
+            for(let i = 0; i<detail.length-2;i++){
                 if(detail[i].textContent == "size:Large" || detail[i].textContent == "size:Medium"){
                     let sizeClass = detail[i].getAttribute('class');
                     if(sizeClass === 'btnOption btnSizeL'){
@@ -54,30 +69,48 @@ for(let i = 0;i<ip.length;i++){
                 optionDetail += detail[i].textContent;
                 optionDetail +=" ";
             }
+            
+            orderPrice = detail[4].textContent.replace(/[^0-9]/g, '');
+
             if(sizeSelected >= 1){
-                showOrderInfo(name,optionDetail);
-                successAnimation();    
+                showOrderInfo(name,optionDetail,orderPrice);
+                if(fastOrder != true) successAnimation();    
             }
             else{
-                failAnimation();
+                if(fastOrder == true) failAnimation(1000);
+                if(fastOrder != true) failAnimation(3000);
             }
             
         });
 };
 $(".option").hide();
 
-function showOrderInfo(name, optionDetail){
+function showOrderInfo(name, optionDetail, orderPrice){
         let order = document.querySelector('.order');
         let tempDiv = document.createElement('div');
         let tempOrder = `
         <p>${name}</p>
         <p>${optionDetail}</p>
+        <p>${orderPrice}</p>
         `;
         tempDiv.innerHTML = tempOrder;
         tempDiv.setAttribute('class', 'orderInfo')
         let tempHr = document.createElement('hr');
-        order.appendChild(tempDiv);
-        order.appendChild(tempHr);
+        let total = document.querySelector(".total");
+        order.insertBefore(tempDiv, total);
+        order.insertBefore(tempHr, total);
+        // order.appendChild(tempDiv);
+        // order.appendChild(tempHr);
+
+        let totalItem = document.querySelectorAll(".orderInfo").length;
+        let tempTI = document.querySelector(".tti");
+        let tempTP = document.querySelector(".ttp");
+        if(tempTP.textContent == "Total price:"){
+            tempTP.textContent = 0;
+        }
+        tempTP.textContent = Number(tempTP.textContent.replace(/[^0-9]/g, ''));
+        tempTI.textContent = "Total item :" + totalItem;
+        tempTP.textContent ="Total price:" + (Number(tempTP.textContent) + Number(orderPrice));
 }
 
 function successAnimation(){
@@ -99,7 +132,7 @@ function successAnimation(){
         }, 2000);
 }
 
-function failAnimation(){
+function failAnimation(time){
     let submitted = document.createElement('div');
     let temp = `
     <svg width="200" height="200">
@@ -116,7 +149,7 @@ function failAnimation(){
     document.body.appendChild(submitted);
     setTimeout(function(){
         document.body.removeChild(submitted);
-    }, 3000);
+    }, time);
 }
 
 let sugar = document.querySelectorAll(".btnSugar");
