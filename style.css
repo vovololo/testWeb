@@ -162,6 +162,15 @@
         animation-delay: .95s;
     }
 
+    .cancel{
+        width: fit-content;
+        height: 20px;
+        background-color: rgba(0,0,0,0);
+        border: none;
+        position: absolute;
+        right: 0;
+    }
+
     @keyframes circle{
         from{
             stroke-dashoffset: 565;
