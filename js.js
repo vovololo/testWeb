@@ -1,16 +1,16 @@
 const item = document.querySelectorAll(".item");
-var fastOrder = false;
+// var fastOrder = false;
 var cancelIndex = 0;
 
-$(".btnFast").click(function () {
-    $(".btnFast").toggleClass("switch");
-    if (fastOrder == true) {
-        fastOrder = false;
-    }
-    else {
-        fastOrder = true;
-    }
-});
+// $(".btnFast").click(function () {
+//     $(".btnFast").toggleClass("switch");
+//     if (fastOrder == true) {
+//         fastOrder = false;
+//     }
+//     else {
+//         fastOrder = true;
+//     }
+// });
 
 
 
@@ -75,11 +75,13 @@ for (let i = 0; i < ip.length; i++) {
 
         if (sizeSelected >= 1) {
             showOrderInfo(name, optionDetail, orderPrice);
-            if (fastOrder != true) successAnimation();
+            // if (fastOrder != true) successAnimation();
+            successAnimation();
         }
         else {
-            if (fastOrder == true) failAnimation(1000);
-            if (fastOrder != true) failAnimation(3000);
+            // if (fastOrder == true) failAnimation(1000);
+            // if (fastOrder != true) failAnimation(3000);
+            failAnimation(3000);
         }
 
     });
@@ -158,12 +160,13 @@ function failAnimation(time) {
         <svg width="100" height="100">
             <circle fill="none" stroke="#FF0000" stroke-width="5" cx="150" cy="50" r="45" class="circle"
             transform="rotate(-90 100 100)" stroke-linecap="round"></circle>
-            <polyline fill="none" stroke="#FF0000" stroke-width="12" points="30,30 50,50 70,30 50,50 70,70 50,50 ,30,70"
+            <polyline fill="none" stroke="#FF0000" stroke-width="6" points="30,30 50,50 70,30 50,50 70,70 50,50 ,30,70"
             stroke-linecap="round" stroke-linejoin="round" class="cross" />
         </svg>
         <h2 class="success">Fail Submit</h2>
         <h2 class="success">(NEED TO SELECT SIZE)</h2>
     `;
+    
     submitted.innerHTML = temp;
     submitted.setAttribute("class", "submitted");
     document.body.appendChild(submitted);
