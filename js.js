@@ -136,10 +136,10 @@ function totalUpdate(orderPrice, cancel){
 function successAnimation() {
     let submitted = document.createElement('div');
     let temp = `
-        <svg width="200" height="200">
-            <circle fill="none" stroke="#68E534" stroke-width="10" cx="100" cy="100" r="90" 
+        <svg width="100" height="100">
+            <circle fill="none" stroke="#68E534" stroke-width="5" cx="150" cy="50" r="45" 
             class="circle" transform="rotate(-90 100 100)" stroke-linecap="round"></circle>
-            <polyline fill="none" stroke="#68E534" stroke-width="12" points="44,107 86,142 152,69"
+            <polyline fill="none" stroke="#68E534" stroke-width="5" points="22,54 43,71 76,38"
             stroke-linecap="round" stroke-linejoin="round" class="tick" />
         </svg>
         <h2 class="success" >Submitted</h2>
@@ -155,10 +155,10 @@ function successAnimation() {
 function failAnimation(time) {
     let submitted = document.createElement('div');
     let temp = `
-    <svg width="200" height="200">
-            <circle fill="none" stroke="#EE0000" stroke-width="10" cx="100" cy="100" r="90" 
-            class="circle" transform="rotate(-90 100 100)" stroke-linecap="round"></circle>
-            <polyline fill="none" stroke="#EE0000" stroke-width="12" points="60,60 100,100 140,60 100,100 140,140 100,100 ,60,140"
+        <svg width="100" height="100">
+            <circle fill="none" stroke="#FF0000" stroke-width="5" cx="150" cy="50" r="45" class="circle"
+            transform="rotate(-90 100 100)" stroke-linecap="round"></circle>
+            <polyline fill="none" stroke="#FF0000" stroke-width="12" points="30,30 50,50 70,30 50,50 70,70 50,50 ,30,70"
             stroke-linecap="round" stroke-linejoin="round" class="cross" />
         </svg>
         <h2 class="success">Fail Submit</h2>
