@@ -119,12 +119,12 @@
 
     .submitted{
         position: fixed;
+        width: 100%;
         display: flex;
         justify-content: center;
         flex-direction: column;
         align-items: center;
         top: 0;
-        left: 45%;
         background-color: rgba(0,0,0,0);
     }
 
