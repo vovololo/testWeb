@@ -1,0 +1,145 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Register</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .wrapper {
+            background-color: rgb(245, 241, 237);
+            margin: auto;
+            margin-top: 1px;
+            width: 50%;
+            font-size: 30px;
+            border: 5px solid black;
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        label{
+            display: block;
+            line-height: 50px;
+        }
+
+        input {
+            /* max-width: 80%; */
+            width: 100%;
+            height: 40px;
+            font-size: large;
+            padding: 0 5px 0 5px;
+        }
+
+        .show {
+            display: none;
+        }
+
+        .btn{
+            position: absolute;
+            top: 5px;
+            right: 20px;
+            padding: 0 5px 0 5px;
+            margin-top: 30px;
+            width: fit-content;
+            height: 30px;
+        }
+
+        .btnLogout{
+            position: absolute;
+            right: 0;
+            padding: 0 5px 0 5px;
+            width: fit-content;
+            height: 30px;
+        }
+
+        a:hover{
+            color: rgb(0, 0, 0);
+        }
+
+        @media (max-width:899px){
+            .wrapper{
+                width: 90%;
+            }
+        }
+
+        @media (max-width:429px){
+            .wrapper{
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper" style="position: relative;">
+        <button class="btn">Register</button>
+        <form method="POST" action="./login" class="login">
+            <h3>Login</h3>
+            <label for="usernameL">User Name</label>
+            <input type="text" name="username" id="usernameL">
+            <label for="passwordL">Password</label>
+            <input type="password" name="password" id="passwordL">
+            <input id="btnSubmitL" type="submit" value="Login">
+        </form>
+
+        <form method="POST" action="./register" class="register show">
+            <h3>Register</h3>
+            <label for="usernameR">User Name</label>
+            <input type="text" name="username" id="usernameR">
+            <label for="passwordR">Password</label>
+            <input type="password" name="password" id="passwordR">
+            <label for="passwordConfirm">Password</label>
+            <input type="password" name="passwordConfirm" id="passwordConfirm">
+            <input id="btnSubmitR" type="submit" value="Register">
+        </form>
+        <div class="link" style="width: 100%;position: relative;margin-top: 20px;">
+            <a href="../" style="margin-top: 10px;font-size: 20px;">back to menu / </a>
+            <a class="aa" href="" style="margin-top: 10px;font-size: 20px;">no account? register it.</a>
+            <a href="./logout"><button class="btnLogout">Logout</button></a>
+        </div>
+        
+    </div>
+
+    
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(".btn").click(() => {
+            let temp = document.querySelector(".btn");
+            if(temp.textContent == "Register"){
+                $(".btn").html("Login");
+                $(".login").toggleClass("show");
+                $(".register").toggleClass("show");
+            }else{
+                $(".btn").html("Register");
+                $(".login").toggleClass("show");
+                $(".register").toggleClass("show");
+            }
+        });
+
+        let aa = document.querySelector('.aa');
+        aa.addEventListener('click',function(e){
+            e.preventDefault();
+            let temp = document.querySelector(".btn");
+            if(temp.textContent == "Register"){
+                $(".btn").html("Login");
+                $(".login").toggleClass("show");
+                $(".register").toggleClass("show");
+            }
+        });
+
+        var socket = io();
+
+        socket.on("fail", (data, reason) => {
+            alert(`Fail to ${data} account. ${reason}`);
+        });
+    </script>
+</body>
+
+</html>

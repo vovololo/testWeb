@@ -1,0 +1,346 @@
+    *{
+        box-sizing: border-box;
+    }
+    body{
+        background-color:beige ;
+        margin: 0;
+        font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
+    }
+
+    .total{
+        position: sticky;
+        background-color: bisque;
+        /* top: 0; */
+        bottom: 0;
+        padding: 0;
+        margin: 0;
+        border-top: 3px solid black;
+        padding: 10px;
+        min-height: 100px;
+    }
+
+    .orderSubmitBtn{
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        width: 40%;
+        height: 40%;
+    }
+
+    .btnOrder{
+        position: absolute;
+        top: -50px;
+    }
+
+    /* .btnFast{
+        text-align: center;
+        position: fixed;
+        top: 0px;
+        right: 0;
+        width: 50px;
+        height: 50px;
+        background-color: rgb(214, 64, 64);
+        color: black;
+        border-radius: 30%;
+    } */
+
+    .btnAcc{
+        position: fixed;
+        top: 0px;
+        right: 0;
+        width: 50px;
+        height: 50px;
+        color: black;
+        border-radius: 30%;
+    }
+
+    .btnFast.switch{
+        background-color: rgb(103, 230, 122);
+    }
+
+    .wrapper{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .order{
+        width: 23%; 
+        /* border-right: 2px solid black;
+        border-radius: 2px; */
+        background-color: aquamarine;
+        /* padding: 5px; */
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        transition: 1s;
+    }
+
+    .orderInfo{
+        margin: 5px;
+    }
+
+    .item{
+        font-size: 25px;
+        display: inline-block;
+        max-width: 40%;
+        margin-top: 10px;
+        margin-right: 30px;
+        border-bottom: 2px solid black;
+    }
+
+    .option{
+        max-width: fit-content;
+        width: inherit;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .btnOption{
+        width: 50%;
+        height: 40px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .btnOption:active{
+        background-color: rgb(151, 151, 143);
+    }
+
+    .btnOption.selected{
+        background-color: rgba(197, 209, 209,0.3);
+    }
+
+    .menu{
+        margin-left: 23%;
+        padding-left: 40px;
+        padding-bottom: 20px;
+        background-color: rgb(197, 209, 209);
+        /* flex: 1; */
+        overflow: auto;
+        /* border-left: 2px solid black; */
+        border-radius: 2px;
+    }
+    
+    /* .submitted .box{
+        border-radius: 50%;
+        text-align: center;
+        width: 100px;
+        height: 100px;
+        background-color: rgb(118, 223, 174);
+        border: none;
+    } */
+
+    .submitted{
+        position: fixed;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        top: 0;
+        background-color: rgba(0,0,0,0);
+    }
+
+    .success{
+        font-family: helvetica;
+        font-size: 8px;
+        max-width: 100px;
+        text-align: center;
+        color: rgb(0, 0, 0);
+        opacity: 0;
+        opacity: 0;
+        animation: title .6s ease-in-out;
+        animation-delay: .5s;
+        animation-fill-mode: forwards;
+    }
+
+    .circle{
+        /* stroke-dasharray: 565;
+        stroke-dashoffset: 565; */
+        stroke-dasharray: 285;
+        stroke-dashoffset: 285;
+        animation: circle 1s ease-in-out;
+        animation-fill-mode: forwards;
+    }
+
+    .tick{
+        /* stroke-dasharray: 154;
+        stroke-dashoffset: 154; */
+        stroke-dasharray: 80;
+        stroke-dashoffset: 80;
+        animation: tick .8s ease-out;
+        animation-delay: .65s;
+        animation-fill-mode: forwards;
+    }
+
+    .cross{
+        opacity: 0;
+        animation: cross .1s ease-out;
+        animation-fill-mode: forwards;
+        animation-delay: .95s;
+    }
+
+    .cancel{
+        width: fit-content;
+        height: 20px;
+        background-color: rgba(0,0,0,0);
+        border: none;
+        position: absolute;
+        right: 0;
+    }
+
+    @keyframes circle{
+        from{
+            /* stroke-dashoffset: 565; */
+            stroke-dashoffset: 285;
+        }
+        to{
+            /* stroke-dashoffset: 1130; */
+            stroke-dashoffset: 570;
+        }
+    }
+
+    @keyframes tick{
+        from{
+            /* stroke-dashoffset: 154; */
+            stroke-dashoffset: 80;
+        }
+        to{
+            stroke-dashoffset: 0;
+        }
+    }
+
+    @keyframes title{
+        from{
+            opacity: 0;
+        }
+        to{
+            opacity: 1;
+        }
+    }
+
+    @keyframes cross{
+        from{
+            opacity: 0;
+        }
+        to{
+            opacity: 1;
+        }
+    }
+    
+
+@media (max-width:890px){
+    .order{
+        left: -300px;
+    }
+
+    .menu{
+        margin-left: unset;
+        padding-left: 50px;
+    }
+
+    .item{
+        margin-right: 50px;
+        font-size: 40px;
+        min-width: 200px;
+        width: 50%;
+    }
+
+    .btnOrder{
+        background-color: aliceblue;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 60px;
+        height: 60px;
+        border: none;
+        border-radius: 30%;
+        transition: .5s;
+    }
+
+    .btnAcc{
+        top: 80px;
+        right: 0;
+        width: 60px;
+        height: 60px;
+    }
+
+    /* .btnFast{
+        top: 80px;
+        right: 0;
+        width: 60px;
+        height: 60px;
+    } */
+
+    .order{
+        left: -300px;
+    }
+
+    .order.show{
+        left: 0;
+        margin-top: 60px;
+        width: 100%;
+        
+    }
+    
+    .btnOrder.clicked{
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .btnOrder:hover{
+        background: rgb(185, 185, 180) ;
+    }
+}
+
+@media (max-width:735px){
+    .item{
+        width: 100%;
+    }
+}
+
+@media (max-width:429px){
+    .btnOrder{
+        width: 50px;
+        height: 50px;
+    }
+
+    .btnAcc{
+        top: 60px;
+        right: 0;
+        width: 50px;
+        height: 50px;
+    }
+
+    /* .btnFast{
+        top: 60px;
+        right: 0;
+        width: 50px;
+        height: 50px;
+    } */
+
+    .order.show{
+        margin-top: 50px;
+    }
+
+    .menu{
+        margin-left: unset;
+        padding-left: 20px;
+        overflow-x: hidden;
+    }
+
+    .item{
+        margin-right: unset;
+        font-size: 40px;
+        max-width: 93%;
+    }
+
+    .btnOption{
+        font-size: 20px;
+    }
+}
